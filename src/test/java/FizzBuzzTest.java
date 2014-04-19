@@ -17,11 +17,13 @@ import com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.impl.FizzB
 public class FizzBuzzTest {
 	private PrintStream out;
 	private FizzBuzz fb;
+    private static String os;
 
 	@Before
 	public void setUp() {
 		fb = new FizzBuzz();
 		out = System.out;
+        os = System.getProperty("os.name");
 	}
 
 	@After
@@ -40,23 +42,48 @@ public class FizzBuzzTest {
 		assertEquals(s, baos.toString());
 	}
 
+    private static boolean isWindows()
+    {
+        return os.startsWith("Windows");
+    }
+    
 	@Test
 	public void testFizzBuzz() throws IOException {
-		doFizzBuzz(1, "1\n");
-		doFizzBuzz(2, "1\n2\n");
-		doFizzBuzz(3, "1\n2\nFizz\n");
-		doFizzBuzz(4, "1\n2\nFizz\n4\n");
-		doFizzBuzz(5, "1\n2\nFizz\n4\nBuzz\n");
-		doFizzBuzz(6, "1\n2\nFizz\n4\nBuzz\nFizz\n");
-		doFizzBuzz(7, "1\n2\nFizz\n4\nBuzz\nFizz\n7\n");
-		doFizzBuzz(8, "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\n");
-		doFizzBuzz(9, "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\n");
-		doFizzBuzz(10, "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n");
-		doFizzBuzz(11, "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\n");
-		doFizzBuzz(12, "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n");
-		doFizzBuzz(13, "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n");
-		doFizzBuzz(14, "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\n");
-		doFizzBuzz(15, "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n");
-		doFizzBuzz(16, "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n16\n");
+        if (isWindows()) {
+            doFizzBuzz(1, "1\r\n");
+            doFizzBuzz(2, "1\r\n2\r\n");
+            doFizzBuzz(3, "1\r\n2\r\nFizz\r\n");
+            doFizzBuzz(4, "1\r\n2\r\nFizz\r\n4\r\n");
+            doFizzBuzz(5, "1\r\n2\r\nFizz\r\n4\r\nBuzz\r\n");
+            doFizzBuzz(6, "1\r\n2\r\nFizz\r\n4\r\nBuzz\r\nFizz\r\n");
+            doFizzBuzz(7, "1\r\n2\r\nFizz\r\n4\r\nBuzz\r\nFizz\r\n7\r\n");
+            doFizzBuzz(8, "1\r\n2\r\nFizz\r\n4\r\nBuzz\r\nFizz\r\n7\r\n8\r\n");
+            doFizzBuzz(9, "1\r\n2\r\nFizz\r\n4\r\nBuzz\r\nFizz\r\n7\r\n8\r\nFizz\r\n");
+            doFizzBuzz(10, "1\r\n2\r\nFizz\r\n4\r\nBuzz\r\nFizz\r\n7\r\n8\r\nFizz\r\nBuzz\r\n");
+            doFizzBuzz(11, "1\r\n2\r\nFizz\r\n4\r\nBuzz\r\nFizz\r\n7\r\n8\r\nFizz\r\nBuzz\r\n11\r\n");
+            doFizzBuzz(12, "1\r\n2\r\nFizz\r\n4\r\nBuzz\r\nFizz\r\n7\r\n8\r\nFizz\r\nBuzz\r\n11\r\nFizz\r\n");
+            doFizzBuzz(13, "1\r\n2\r\nFizz\r\n4\r\nBuzz\r\nFizz\r\n7\r\n8\r\nFizz\r\nBuzz\r\n11\r\nFizz\r\n13\r\n");
+            doFizzBuzz(14, "1\r\n2\r\nFizz\r\n4\r\nBuzz\r\nFizz\r\n7\r\n8\r\nFizz\r\nBuzz\r\n11\r\nFizz\r\n13\r\n14\r\n");
+            doFizzBuzz(15, "1\r\n2\r\nFizz\r\n4\r\nBuzz\r\nFizz\r\n7\r\n8\r\nFizz\r\nBuzz\r\n11\r\nFizz\r\n13\r\n14\r\nFizzBuzz\r\n");
+            doFizzBuzz(16, "1\r\n2\r\nFizz\r\n4\r\nBuzz\r\nFizz\r\n7\r\n8\r\nFizz\r\nBuzz\r\n11\r\nFizz\r\n13\r\n14\r\nFizzBuzz\r\n16\r\n");
+        } else {
+            doFizzBuzz(1, "1\n");
+            doFizzBuzz(2, "1\n2\n");
+            doFizzBuzz(3, "1\n2\nFizz\n");
+            doFizzBuzz(4, "1\n2\nFizz\n4\n");
+            doFizzBuzz(5, "1\n2\nFizz\n4\nBuzz\n");
+            doFizzBuzz(6, "1\n2\nFizz\n4\nBuzz\nFizz\n");
+            doFizzBuzz(7, "1\n2\nFizz\n4\nBuzz\nFizz\n7\n");
+            doFizzBuzz(8, "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\n");
+            doFizzBuzz(9, "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\n");
+            doFizzBuzz(10, "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n");
+            doFizzBuzz(11, "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\n");
+            doFizzBuzz(12, "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n");
+            doFizzBuzz(13, "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n");
+            doFizzBuzz(14, "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\n");
+            doFizzBuzz(15, "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n");
+            doFizzBuzz(16, "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n16\n");
+        }
+		
 	}
 }
